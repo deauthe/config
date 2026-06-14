@@ -1,0 +1,6 @@
+gcloud
+*/.db
+
+solana/
+zed/
+.DS_Store
