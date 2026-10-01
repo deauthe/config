@@ -38,3 +38,7 @@ AeroSpace (tiling) + SketchyBar (menu bar)
 ## Not tracked
 
 Anything holding credentials or machine state is git-ignored: `gh/hosts.yml`, `github-copilot/`, `graphite/user_config`, `gcloud`, `solana/`, Raycast, herdr sessions and logs. `~/.zshrc` lives outside this repo and just sources [`zsh/terminal.zsh`](zsh/README.md).
+
+## License
+
+[MIT](LICENSE). `sketchybar*/` and `nvim/` include their own upstream licenses.
