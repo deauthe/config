@@ -1,11 +1,13 @@
 [tools]
 go = "1.21.0"
+"go:github.com/go-task/task/v3/cmd/task" = "3.52.0"
 golangci-lint = "2"
-node = "20"
+node = "22.19.0"
 pnpm = "9.15.9"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node"]
+experimental = true
 
 [env]
 GOTOOLCHAIN = "local"
