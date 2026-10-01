@@ -5,3 +5,13 @@ solana/
 zed/
 .DS_Store
 raycast/
+
+# credentials / tokens
+github-copilot/
+graphite/user_config
+gh/hosts.yml
+
+# herdr runtime state (only config.toml is tracked)
+herdr/*
+!herdr/config.toml
+!herdr/README.md

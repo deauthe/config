@@ -1,0 +1,90 @@
+# ─── theme ─────────────────────────────────────────────
+theme = frost
+window-theme = dark
+window-colorspace = display-p3
+alpha-blending = linear-corrected
+minimum-contrast = 1.1
+
+# ─── glass ─────────────────────────────────────────────
+background-opacity = 0.68
+background-blur = 40
+unfocused-split-opacity = 0.85
+unfocused-split-fill = #0b0d12
+
+# ─── font (ghostty ships JetBrains Mono + Nerd Font symbols built in) ─
+font-size = 13
+font-thicken = true
+font-feature = calt
+font-feature = liga
+adjust-cell-height = 12%
+
+# ─── cursor ────────────────────────────────────────────
+cursor-style = bar
+cursor-style-blink = false
+cursor-opacity = 0.9
+mouse-hide-while-typing = true
+
+# ─── animations ────────────────────────────────────────
+custom-shader = shaders/cursor_trail.glsl
+custom-shader-animation = true
+quick-terminal-animation-duration = 0.18
+resize-overlay = never
+
+# ─── window ────────────────────────────────────────────
+macos-titlebar-style = transparent
+macos-titlebar-proxy-icon = hidden
+macos-option-as-alt = true
+window-decoration = true
+window-padding-x = 14
+window-padding-y = 10
+window-padding-balance = true
+window-padding-color = background
+window-save-state = always
+window-width = 140
+window-height = 40
+confirm-close-surface = false
+
+# ─── quick terminal ────────────────────────────────────
+quick-terminal-position = top
+quick-terminal-screen = mouse
+quick-terminal-autohide = true
+keybind = global:super+grave_accent=toggle_quick_terminal
+
+# ─── behaviour ─────────────────────────────────────────
+copy-on-select = clipboard
+clipboard-paste-protection = false
+focus-follows-mouse = true
+desktop-notifications = true
+bell-features = no-title,no-attention,no-audio,no-system
+link-url = true
+auto-update = download
+auto-update-channel = stable
+
+# ─── tmux (status bar lives in tmux/tmux.conf) ─────────
+command = ~/.config/ghostty/tmux/launch.sh
+
+# ─── ghostty keybinds ──────────────────────────────────
+keybind = super+r=reload_config
+keybind = super+i=inspector:toggle
+keybind = super+ctrl+f=toggle_fullscreen
+keybind = super+f=text:\x1b[9018~
+
+# ─── cmd keys → tmux (user-keys in tmux/tmux.conf) ────
+keybind = super+t=text:\x1b[9000~
+keybind = super+w=text:\x1b[9001~
+keybind = super+d=text:\x1b[9002~
+keybind = super+shift+d=text:\x1b[9003~
+keybind = super+z=text:\x1b[9004~
+keybind = super+left=text:\x1b[9005~
+keybind = super+right=text:\x1b[9006~
+keybind = super+k=text:\x1b[9007~
+keybind = super+s=text:\x1b[9008~
+keybind = super+1=text:\x1b[9009~
+keybind = super+2=text:\x1b[9010~
+keybind = super+3=text:\x1b[9011~
+keybind = super+4=text:\x1b[9012~
+keybind = super+5=text:\x1b[9013~
+keybind = super+6=text:\x1b[9014~
+keybind = super+7=text:\x1b[9015~
+keybind = super+8=text:\x1b[9016~
+keybind = super+9=text:\x1b[9017~
