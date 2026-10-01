@@ -26,7 +26,7 @@ There is no `~/.tmux.conf`; tmux is always launched with `-f` pointing here.
 
 ```sh
 brew install --cask ghostty
-brew install tmux zsh-vi-mode terminal-notifier
+brew install tmux zsh-vi-mode terminal-notifier fzf fd atuin zsh-autosuggestions zsh-syntax-highlighting
 git clone <this repo> ~/.config
 ```
 
@@ -41,8 +41,9 @@ The tmux prefix is **`Ctrl+S`** (`Ctrl+Space` is taken by macOS input-source swi
 | `⌘T` | `Ctrl+S c` | New window |
 | `⌘D` / `⌘⇧D` | `Ctrl+S \|` / `Ctrl+S -` | Split side by side / top-bottom (animated) |
 | `⌘W` | `Ctrl+S x` | Close pane |
-| `⌘Z` | `Ctrl+S z` | Zoom pane |
-| `⌘1`–`⌘9`, `⌘←` / `⌘→` | `Ctrl+S 1`–`9`, `n` / `p` | Switch window |
+| `⌘Enter` / `⌘Z` | `Ctrl+S z` | Zoom pane |
+| `⌘1`–`⌘9` | `Ctrl+S 1`–`9`, `n` / `p` | Switch window |
+| `⌘←` / `⌘→` | — | Start / end of line (Ghostty default, left free for text) |
 | `⌘S` | `Ctrl+S s` | Session / window picker |
 | `⌘F` | — | Search the pane's scrollback |
 | `⌘K` | `Ctrl+S k` | Clear screen + scrollback |
@@ -84,57 +85,9 @@ The left side shows a **PREFIX** badge while the prefix is held, a **COPY** badg
 
 Ghostty hides notifications from the window that has focus, and it can't see tmux panes. So when the target Ghostty window is focused the script uses `terminal-notifier` (falling back to `osascript`); otherwise it writes an OSC 777 sequence to the tmux client's tty. Debug log: `~/.cache/ghostty-notify.log`.
 
-## Shell pieces (in `~/.zshrc`, not in this repo)
+## Shell pieces
 
-<details>
-<summary>vi mode + long-command notifications</summary>
-
-```zsh
-unsetopt BEEP
-
-ZVM_INIT_MODE=sourcing
-ZVM_SYSTEM_CLIPBOARD_ENABLED=true
-ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
-ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BEAM
-ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
-ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
-zvm_after_init() {
-  autoload -Uz edit-command-line
-  zle -N edit-command-line
-  bindkey -M viins '^R' history-incremental-search-backward
-  bindkey -M viins '^A' beginning-of-line
-  bindkey -M viins '^E' end-of-line
-  bindkey -M viins '^W' backward-kill-word
-  bindkey -M viins '^P' up-line-or-history
-  bindkey -M viins '^N' down-line-or-history
-  bindkey -M viins '^X^E' edit-command-line
-}
-source /opt/homebrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-
-zmodload zsh/datetime
-autoload -Uz add-zsh-hook
-NOTIFY_MIN_SECONDS=10
-NOTIFY_IGNORE=(vi vim nvim less more man ssh tmux lazygit htop btop top watch claude fzf bat git-log)
-_notify_preexec() { _notify_cmd=$1; _notify_start=$EPOCHREALTIME }
-_notify_precmd() {
-  local code=$?
-  [[ -z $_notify_start ]] && return
-  local elapsed=$(( EPOCHREALTIME - _notify_start ))
-  unset _notify_start
-  (( elapsed < NOTIFY_MIN_SECONDS )) && return
-  local first=${${(z)_notify_cmd}[1]}
-  (( ${NOTIFY_IGNORE[(Ie)$first]} )) && return
-  local secs=${elapsed%.*} took
-  (( secs >= 60 )) && took="$(( secs / 60 ))m $(( secs % 60 ))s" || took="${secs}s"
-  local title
-  (( code == 0 )) && title="✓ Done in $took" || title="✗ Failed ($code) after $took"
-  ~/.config/ghostty/tmux/scripts/notify.sh "$title" "$_notify_cmd" &!
-}
-add-zsh-hook preexec _notify_preexec
-add-zsh-hook precmd _notify_precmd
-```
-
-</details>
+The zsh side (vi mode, long-command notifications, autosuggestions, atuin history, fzf-tab) lives in [`../zsh/terminal.zsh`](../zsh/README.md). `~/.zshrc` only needs `source ~/.config/zsh/terminal.zsh`.
 
 ## Gotchas
 

@@ -11,6 +11,8 @@ git clone https://github.com/deauthe/config ~/.config
 | Folder | Tool | Notes |
 | --- | --- | --- |
 | [`ghostty/`](ghostty/README.md) | Ghostty + **tmux** | tmux lives inside `ghostty/tmux/` and Ghostty launches straight into it. Includes theme, cursor shader, status bar and notifications |
+| [`zsh/`](zsh/README.md) | zsh | Warp-style shell: autosuggestions, atuin history, fzf-tab, vi mode, notifications |
+| `atuin/` | atuin | Local-only smart history (no sync) |
 | [`herdr/`](herdr/README.md) | herdr | AI-agent workspace manager; only `config.toml` is tracked |
 | [`aerospace/`](aerospace/README.md) | AeroSpace | Tiling window manager + workspace auto-placement |
 | [`sketchybar/`](sketchybar/README.md) | SketchyBar | Menu bar wired to AeroSpace workspaces |
@@ -29,10 +31,10 @@ git clone https://github.com/deauthe/config ~/.config
 AeroSpace (tiling) + SketchyBar (menu bar)
 └── Ghostty (glass, theme, ⌘ keys)
     └── tmux (status bar, panes, sessions)   ← ghostty/tmux/
-        └── zsh (vi mode, long-command notifications)
+        └── zsh (vi mode, suggestions, atuin, fzf-tab, notifications)   ← zsh/
             └── nvim, herdr, …
 ```
 
 ## Not tracked
 
-Anything holding credentials or machine state is git-ignored: `gh/hosts.yml`, `github-copilot/`, `graphite/user_config`, `gcloud`, `solana/`, Raycast, herdr sessions and logs. `~/.zshrc` lives outside this repo; the parts that the Ghostty setup needs are in [`ghostty/README.md`](ghostty/README.md#shell-pieces-in-zshrc-not-in-this-repo).
+Anything holding credentials or machine state is git-ignored: `gh/hosts.yml`, `github-copilot/`, `graphite/user_config`, `gcloud`, `solana/`, Raycast, herdr sessions and logs. `~/.zshrc` lives outside this repo and just sources [`zsh/terminal.zsh`](zsh/README.md).

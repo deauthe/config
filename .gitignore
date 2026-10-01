@@ -15,3 +15,11 @@ gh/hosts.yml
 herdr/*
 !herdr/config.toml
 !herdr/README.md
+
+# machine-specific / private
+AWSVPNClient/
+awsp/
+cagent/
+config/
+exercism/
+qBittorrent/

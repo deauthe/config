@@ -75,8 +75,7 @@ keybind = super+w=text:\x1b[9001~
 keybind = super+d=text:\x1b[9002~
 keybind = super+shift+d=text:\x1b[9003~
 keybind = super+z=text:\x1b[9004~
-keybind = super+left=text:\x1b[9005~
-keybind = super+right=text:\x1b[9006~
+keybind = super+enter=text:\x1b[9004~
 keybind = super+k=text:\x1b[9007~
 keybind = super+s=text:\x1b[9008~
 keybind = super+1=text:\x1b[9009~
