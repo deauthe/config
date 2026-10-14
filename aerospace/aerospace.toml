@@ -61,7 +61,7 @@ on-focus-changed = ['move-mouse window-lazy-center']
 [gaps]
 inner.horizontal = 5
 inner.vertical = 5
-outer.top = [{ monitor."main" = -25 }, {monitor."secondary" = 5}, 5]
+outer.top = [{ monitor."main" = 0 }, {monitor."secondary" = 5}, 5]
 outer.left = 1
 outer.bottom = 1
 outer.right = 1
@@ -158,6 +158,8 @@ alt-shift-semicolon = 'mode service'
 # rotate hangul and english
 
 alt-shift-f = 'fullscreen'
+alt-f = 'exec-and-forget /Users/anuragverma/.config/aerospace/window-picker.sh'
+alt-shift-w = 'exec-and-forget /Users/anuragverma/.config/cmux/overview/tools.sh dismiss water'
 
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
@@ -234,8 +236,9 @@ if.app-id = 'com.mitchellh.ghostty'
 run = ['move-node-to-workspace t']
 
 [[on-window-detected]]
-if.app-id = 'com.apple.systempreferences'
-run = ['layout floating']
+if.app-id = 'com.cmuxterm.app'
+run = ['move-node-to-workspace t']
+
 
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
